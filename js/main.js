@@ -172,3 +172,19 @@ function playMusic() {
     music.play();
     document.getElementById("musicPrompt").style.display = "none";
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const music = document.getElementById("backgroundMusic");
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                document.getElementById("musicPrompt").style.display = "none";
+            })
+            .catch(() => {
+                document.getElementById("musicPrompt").style.display = "block";
+            });
+    }
+});
+
