@@ -159,3 +159,13 @@ function toggleMusic() {
         music.pause();
     }
 }
+window.onload = function() {
+    const music = document.getElementById("backgroundMusic");
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            alert("Click the 'Play Music' button to start background music.");
+        });
+    }
+};
