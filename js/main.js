@@ -151,21 +151,6 @@ function randomizePositions() {
 }
 
 window.onload = randomizePositions;
-window.onload = function(){
-    //Delay confetti creation by 2 seconds
-    setTimeout(createConfetti, 2000);
-    setTimeout(randomizePositions, 2000);
-
-    document.getElementById("loadingSpinner").style.display = "none";
-
-    // Call other functions
-    initializeGallery();
-    loadChats();
-    loadQuiz();
-    createConfetti();
-    randomizePositions();
-};
-
 window.onresize = randomizePositions; // Re-randomize positions on window resize
 
 window.onscroll = function() {
