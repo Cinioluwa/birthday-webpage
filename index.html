@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Gloria!</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>Happy Birthday, Gloria!</h1>
+        <img src="logo.png" alt="logo" id="logo">
+    </header>
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <!-- More confetti pieces will be added by JavaScript -->
+
+
+
+<!-- Add more balloons as needed -->
+
+    <!-- Add more bubbles as needed -->
+
+    <!-- Modal for Open When Messages -->
+    <div id="openWhenModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery">
+        <h2>Isn't she pretty?😁</h2>
+        <div class="gallery-slider">
+            <!-- Placeholder images for the sliding gallery -->
+            <img src="glo.png" alt="Photo 1">
+            <img src="gloria.jpg" alt="Photo 2">
+            <img src="glor.jpg" alt="Photo 3">
+            <img src="glori.png" alt="Photo 4">
+            <img src="gloria0.png" alt="Photo 5">
+            <img src="gloria3.jpg" alt="Photo 6">
+            <img src="gloria4.jpg" alt="Photo 7">
+            <img src="gloria5.jpg" alt="Photo 8">
+            <img src="gloria6.jpg" alt="Photo 9">
+            <img src="gloria8.jpg" alt="Photo 10">
+            <img src="Screenshot_20240301_083355_WhatsApp.jpg" alt="Photo 11">
+            
+
+
+        </div>
+    </section>
+
+
+    <!-- Message Board Section -->
+    <section class="message-board">
+        <h2>Heyy Gloriaaa</h2>
+        <div class="message-container" id="message-board">
+            <!-- JavaScript will dynamically load messages here -->
+            <p class="message-placeholder">Happy Birthday to you dear 🌟 Today, I just want you to know how deeply grateful I am for you—for your kindness, your laughter, and the way you make everyone around you feel special. You’re more than just a friend to me; you’re like family. From every shared memory to every late-night conversation, you’ve been a constant source of joy, inspiration, and comfort in my life.
+
+Watching you grow, laugh, and thrive has been one of the greatest joys. You light up every room with your presence, and your heart is as beautiful as your spirit. I’m constantly amazed by your strength, your dreams, and the genuine care you show to everyone lucky enough to know you. You bring out the best in me, and I can’t thank you enough for being such a steadfast, genuine friend.
+
+Today, I wish for you all the happiness you bring to others to return to you a hundredfold. May this year bring you closer to all the dreams you hold dear, and may it be filled with endless joy, love, and laughter. You deserve the absolute best, and I’ll be here cheering for you every step of the way.
+
+Here’s to more memories, more laughter, and a friendship that I’ll treasure forever. Happy Birthday, Gloria—you truly are a gift to us all. 💖🎉
+
+            </p>
+        </div>
+        <div id = "message-container">
+            <textarea id="newMessage" placeholder="She's 18 already...🥹"></textarea>
+            <button class = "postmessage" onclick="addMessage()">👀She is?</button>
+        </div>
+    </section>
+
+    <!-- Chat Timeline Section -->
+    <section class="chat-timeline">
+        <h2>Memories</h2>
+        <div class="chat-content" id="chat-timeline">
+            <!-- Iconic chats will be loaded here -->
+            <p class="chat-placeholder">Let's take a trip together...</p>
+        </div>
+
+        <audio id="backgroundMusic" loop>
+            <source src="path-to-music-file.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button class="play" onclick="toggleMusic()">🎵 Play/Pause Music</button>
+    </section>
+
+    
+    
+
+    <!-- Open When Letters Section -->
+    <section class="open-when-letters">
+        <h2>Open When...</h2>
+        <div class="letters">
+            <button class="b1" onclick="openLetter('happy')">Open When You're Happy</button>
+            <button class="b1" onclick="openLetter('sad')">Open When You're Sad</button>
+            <!-- More letters can be added here -->
+        </div>
+    </section>
+
+    <!-- Music Playlist Section -->
+    <section class="playlist">
+        <h2>Playlist</h2>
+        <div id="playlist">
+            <!-- Embed music player or playlist links here -->
+            <p class="playlist-placeholder"><a href="https://open.spotify.com/playlist/0PT9QV6mzXqsrMu9eT01Rh?si=CvAs8UJkRJSYWHX7mPaSew&pi=4jTL1_7ZR3CtU" target="'_blank">Listen to your favorite songs</a>
+        </div>
+    </section>
+
+    <button id="backToTop" onclick="scrollToTop()">⬆️ Back to Top</button>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p>With love, from Comrade!💖</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
