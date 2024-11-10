@@ -133,6 +133,21 @@ function randomizePositions() {
         piece.style.left = `${randomX}px`;
         piece.style.animationDelay = `${Math.random() * 2}s`;
     });
+
+    const music = document.getElementById("backgroundMusic");
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                // Music autoplayed successfully
+                document.getElementById("musicPrompt").style.display = "none";
+            })
+            .catch(() => {
+                // Autoplay was blocked, show the prompt
+                document.getElementById("musicPrompt").style.display = "block";
+            });
+    }
 }
 
 window.onload = randomizePositions;
@@ -151,21 +166,9 @@ function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function toggleMusic() {
-    const music = document.getElementById("backgroundMusic");
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
-}
-window.onload = function() {
-    const music = document.getElementById("backgroundMusic");
-    const playPromise = music.play();
 
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            alert("Click the 'Play Music' button to start background music.");
-        });
-    }
-};
+function playMusic() {
+    const music = document.getElementById("backgroundMusic");
+    music.play();
+    document.getElementById("musicPrompt").style.display = "none";
+}

@@ -13,6 +13,11 @@
         <img src="logo.png" alt="logo" id="logo">
     </header>
 
+    <div id="musicPrompt" class="music-popup">
+        <p>🎶 Click "Play Music" to enjoy background music 🎶</p>
+        <button onclick="playMusic()">Play Music</button>
+    </div>
+
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
@@ -105,12 +110,11 @@ Here’s to more memories, more laughter, and a friendship that I’ll treasure 
             <!-- Iconic chats will be loaded here -->
             <p class="chat-placeholder">Let's take a trip together...</p>
         </div>
-
+        
         <audio id="backgroundMusic" autoplay loop>
             <source src="10000reasons.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        <button class="play" onclick="toggleMusic()">🎵Pause Music</button>
     </section>
 
     
@@ -130,10 +134,13 @@ Here’s to more memories, more laughter, and a friendship that I’ll treasure 
     <section class="playlist">
         <h2>Playlist</h2>
         <div id="playlist">
-            <!-- Embed music player or playlist links here -->
-            <p class="playlist-placeholder"><a href="https://open.spotify.com/playlist/0PT9QV6mzXqsrMu9eT01Rh?si=CvAs8UJkRJSYWHX7mPaSew&pi=4jTL1_7ZR3CtU" target="'_blank">Listen to your favorite songs</a>
+            <!-- Button for "Listen to Your Favorite Songs" -->
+            <button class="b1" onclick="window.open('https://open.spotify.com/playlist/0PT9QV6mzXqsrMu9eT01Rh?si=CvAs8UJkRJSYWHX7mPaSew', '_blank')">
+                🎶 Listen to Your Favorite Songs 🎶
+            </button>
         </div>
     </section>
+
 
     <button id="backToTop" onclick="scrollToTop()">⬆️ Back to Top</button>
 

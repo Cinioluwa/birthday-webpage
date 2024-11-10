@@ -295,3 +295,36 @@ section {
     margin-top: 4%;
 }
 
+/* Music Popup Styling */
+.music-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    width: 300px;
+}
+
+.music-popup p {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.music-popup button {
+    background-color: #ff69b4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.music-popup button:hover {
+    background-color: #ff4081;
+}
