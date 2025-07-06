@@ -2,23 +2,30 @@
 window.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('lockscreen-overlay');
     const input = document.getElementById('lockscreen-password');
-    // Removed submit button
     const error = document.getElementById('lockscreen-error');
     let lockscreenActive = true;
 
-    // Prevent navigation while lockscreen is active
+    // *** MODIFIED: This function is now smarter. ***
+    // It allows events inside the lockscreen but blocks them outside.
     function blockIfLocked(e) {
         if (lockscreenActive) {
-            if (e) {
+            // Unconditionally block the mouse wheel to prevent background scrolling.
+            if (e.type === 'wheel') {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return;
+            }
+
+            // For mouse and touch events, check if they happened outside the overlay.
+            if (overlay && !overlay.contains(e.target)) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
             }
-            return false;
+            // If the event is inside the overlay, we do nothing and let it pass through.
         }
     }
     // Block scroll, key, and mouse events
     window.addEventListener('wheel', blockIfLocked, { passive: false });
-    // document.addEventListener('keydown', blockIfLocked, true);
     document.addEventListener('mousedown', blockIfLocked, true);
     document.addEventListener('touchstart', blockIfLocked, { passive: false });
 
@@ -127,8 +134,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function validateInput() {
         const val = input.value.trim().toLowerCase();
-        if (val.length >= 10) {//change to 5 before deploy
-            if (val === 'nottimeyet') {//change to buddy
+        if (val.length >= 10) {//change to 5
+            if (val === 'nottimeyet') {//change to buddy later
                 overlay.style.opacity = '0';
                 setTimeout(() => { overlay.style.display = 'none'; }, 500);
                 lockscreenActive = false;
@@ -159,28 +166,22 @@ window.addEventListener('DOMContentLoaded', function() {
 let revolvingIndex = 0;
 let lastFrame = null;
 function revolvePhotoFrames() {
-    // UPDATED: Selects only divs with the class, excluding video tags.
     const frames = Array.from(document.querySelectorAll('div.photo-frame'));
     if (frames.length === 0) return;
-    // Remove effect from all
     frames.forEach(f => f.classList.remove('revolve'));
-    // Defensive: ensure index is in bounds
     if (revolvingIndex >= frames.length) revolvingIndex = 0;
-    // Add to current
     const frame = frames[revolvingIndex];
     if (frame) {
-        // Force reflow to restart animation if needed
         void frame.offsetWidth;
         frame.classList.add('revolve');
     }
     revolvingIndex = (revolvingIndex + 1) % frames.length;
 }
 setInterval(revolvePhotoFrames, 1000);
-// Start immediately
 setTimeout(revolvePhotoFrames, 500);
 
 let currentPanel = 0;
-const totalPanels = 11; // UPDATED to 11
+const totalPanels = 11;
 const storyWrapper = document.querySelector('.story-wrapper');
 const progressBar = document.querySelector('.progress-bar');
 const navDots = document.querySelectorAll('.nav-dot');
@@ -192,11 +193,11 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let isDragging = false;
+let lockscreenActive = true; // Also need this variable accessible here
 
 // Listen for vertical scroll to move horizontally
 window.addEventListener('wheel', function(e) {
     if (isTransitioning) return;
-    // Only act on vertical scroll
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         if (e.deltaY > 0) {
             nextPanel();
@@ -276,6 +277,9 @@ document.addEventListener('mousemove', handleMouseMove);
 document.addEventListener('mouseup', handleMouseUp);
 
 function handleTouchStart(e) {
+    // *** MODIFIED: Don't start a drag if the lockscreen is on. ***
+    if (lockscreenActive) return;
+
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     isDragging = true;
@@ -297,24 +301,25 @@ function handleTouchEnd(e) {
     const deltaX = startX - currentX;
     const deltaY = startY - currentY;
 
-    // Horizontal swipe (left/right)
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
         if (deltaX > 0) {
             nextPanel();
         } else {
             prevPanel();
         }
-    // Vertical swipe (up/down) also moves horizontally
     } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
         if (deltaY > 0) {
-            nextPanel(); // swipe up
+            nextPanel(); 
         } else {
-            prevPanel(); // swipe down
+            prevPanel();
         }
     }
 }
 
 function handleMouseDown(e) {
+    // *** MODIFIED: Don't start a drag if the lockscreen is on. ***
+    if (lockscreenActive) return;
+
     startX = e.clientX;
     startY = e.clientY;
     isDragging = true;
@@ -346,6 +351,7 @@ function handleMouseUp(e) {
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
+    if (lockscreenActive) return; // Also block keyboard nav when locked
     if (e.key === 'ArrowLeft') {
         prevPanel();
     } else if (e.key === 'ArrowRight') {
@@ -356,15 +362,6 @@ document.addEventListener('keydown', (e) => {
 // Initialize
 updateProgress();
 updateNavigation();
-
-// Auto-advance demo (remove this if you don't want auto-advance)
-// setInterval(() => {
-//     if (currentPanel < totalPanels - 1) {
-//         nextPanel();
-//     } else {
-//         goToPanel(0);
-//     }
-// }, 8000);
 
 // Add some sparkle effects
 function createSparkle() {
@@ -389,5 +386,4 @@ function createSparkle() {
     }, 2000);
 }
 
-// Create sparkles periodically
 setInterval(createSparkle, 3000);
