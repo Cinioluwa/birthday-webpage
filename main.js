@@ -1,9 +1,9 @@
+let lockscreenActive = true; //One to rule them all!
 // LOCKSCREEN FUNCTIONALITY
 window.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('lockscreen-overlay');
     const input = document.getElementById('lockscreen-password');
     const error = document.getElementById('lockscreen-error');
-    let lockscreenActive = true;
 
     // *** MODIFIED: This function is now smarter. ***
     // It allows events inside the lockscreen but blocks them outside.
@@ -136,6 +136,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const val = input.value.trim().toLowerCase();
         if (val.length >= 10) {//change to 5
             if (val === 'nottimeyet') {//change to buddy later
+                lockscreenActive = false;   
                 overlay.style.opacity = '0';
                 setTimeout(() => { overlay.style.display = 'none'; }, 500);
                 lockscreenActive = false;
@@ -193,7 +194,6 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let isDragging = false;
-let lockscreenActive = true; // Also need this variable accessible here
 
 // Listen for vertical scroll to move horizontally
 window.addEventListener('wheel', function(e) {
