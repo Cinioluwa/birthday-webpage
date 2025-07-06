@@ -1,0 +1,429 @@
+/* LOCKSCREEN OVERLAY */
+#lockscreen-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s;
+}
+.lockscreen-content {
+    background: rgba(255,255,255,0.07);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    padding: 40px 32px 32px 32px;
+    text-align: center;
+    min-width: 300px;
+    max-width: 90vw;
+    backdrop-filter: blur(8px);
+}
+.lockscreen-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 8px #0008;
+}
+#lockscreen-password {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    width: 80%;
+    max-width: 220px;
+    outline: none;
+    box-shadow: 0 2px 8px #0002;
+}
+#lockscreen-submit {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 8px;
+}
+#lockscreen-submit:hover {
+    background: linear-gradient(90deg, #764ba2, #667eea);
+}
+
+        
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: grab;
+        }
+
+        body.grabbing {
+            cursor: grabbing;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-wrapper {
+            display: flex;
+            width: 1100vw; /* Updated for 11 panels */
+            height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .story-panel {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .story-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .story-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+        }
+
+        .story-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-text {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background-size: cover;
+            background-position: center;
+            margin: 20px auto;
+            animation: float 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            /* Added for video element support */
+            object-fit: cover; 
+        }
+
+        .photo-frame.revolve {
+            animation: revolve 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 10;
+        }
+
+        @keyframes revolve {
+            0% {
+                transform: scale(1) rotate(0deg);
+                filter: brightness(1);
+            }
+            30% {
+                transform: scale(1.25) rotate(-20deg);
+                filter: brightness(1.2);
+            }
+            60% {
+                transform: scale(1.35) rotate(20deg);
+                filter: brightness(1.3);
+            }
+            80% {
+                transform: scale(1.15) rotate(-10deg);
+                filter: brightness(1.1);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                filter: brightness(1);
+            }
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.1);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            max-width: 4000px;
+        }
+
+        .photo-grid .photo-frame {
+            width: 140px;
+            height: 140px;
+            margin: 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            z-index: 100;
+            transition: width 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Panel-specific backgrounds */
+        .panel-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .panel-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .panel-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .panel-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .panel-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .panel-6 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .panel-7 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .panel-8 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        /* New panel backgrounds */
+        .panel-9 { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
+        .panel-10 { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+        .panel-11 { background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); }
+
+
+        .interactive-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            animation: sparkle 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            animation: heartFloat 3s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes heartFloat {
+            0% { transform: translate(-50%, -50%) rotate(45deg) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -200px) rotate(45deg) scale(1); opacity: 0; }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+            .photo-grid .photo-frame {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* [Previous CSS remains the same... just add this new block at the end] */
+
+        /* [Previous CSS remains the same... just find and replace the .pinned-note styles] */
+
+        /* PINNED NOTE STYLES */
+        .pinned-note {
+            position: absolute;
+            z-index: 5;
+            width: 220px;
+            max-width: 45vw;
+            transform: rotate(-4deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .pinned-note.alt-rotate {
+            transform: rotate(5deg);
+        }
+
+        .pinned-note:hover {
+            transform: scale(1.15) rotate(0deg) !important;
+            z-index: 6;
+        }
+
+        .pinned-note .pin-emoji {
+            position: absolute;
+            top: -15px; /* Pushes the pin down to overlap the image */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            z-index: 1; /* Ensures pin is on top of the image */
+        }
+
+        .pinned-note img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            opacity: 0.55; /* This creates the "faded out" look */
+            border: 3px solid white;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+            .photo-grid .photo-frame {
+                width: 130px;
+                height: 130px;
+            }
+            .pinned-note {
+                width: 130px;
+            }
+            .story-text{
+                margin-bottom: 150px;
+            }
+            #_10 {
+                margin-bottom: 100px;
+            }
+            #_8 {
+                margin-bottom: 100px;
+            }
+        }

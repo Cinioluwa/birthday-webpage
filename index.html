@@ -3,153 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Gloria!</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet">
+    <title>Gloria's World ✨</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <h1>Happy Birthday, Gloria!</h1>
-        <img src="logo.png" alt="logo" id="logo">
-    </header>
-
-    <div id="musicPrompt" class="music-popup">
-        <p>🎶 Click "Play Music" to enjoy background music 🎶</p>
-        <button onclick="playMusic()">Play Music</button>
-    </div>
-
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <!-- More confetti pieces will be added by JavaScript -->
-
-
-
-<!-- Add more balloons as needed -->
-
-    <!-- Add more bubbles as needed -->
-
-    <!-- Modal for Open When Messages -->
-    <div id="openWhenModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <p id="modalMessage"></p>
+    <div id="lockscreen-overlay">
+        <div class="lockscreen-content">
+            <div class="lockscreen-title">What's the nickname I gave you?👀</div>
+            <input type="password" id="lockscreen-password" placeholder="Enter password..." autocomplete="off" maxlength="20" />
+            <div id="lockscreen-error" style="color:#ff6b6b; margin-top:10px; display:none;">Nooo... you've forgotten?</div>
         </div>
     </div>
-
-
-    <!-- Photo Gallery Section -->
-    <section class="photo-gallery">
-        <h2>Isn't she pretty?😁</h2>
-        <div class="gallery-slider">
-            <!-- Placeholder images for the sliding gallery -->
-            <img src="glo.png" alt="Photo 1">
-            <img src="gloria.jpg" alt="Photo 2">
-            <img src="glor.jpg" alt="Photo 3">
-            <img src="glori.png" alt="Photo 4">
-            <img src="gloria0.png" alt="Photo 5">
-            <img src="gloria3.jpg" alt="Photo 6">
-            <img src="gloria4.jpg" alt="Photo 7">
-            <img src="gloria5.jpg" alt="Photo 8">
-            <img src="gloria6.jpg" alt="Photo 9">
-            <img src="gloria8.jpg" alt="Photo 10">
-            <img src="Screenshot_20240301_083355_WhatsApp.jpg" alt="Photo 11">
-            
-
-
-        </div>
-    </section>
-
-
-    <!-- Message Board Section -->
-    <section class="message-board">
-        <h2>Heyy Gloriaaa</h2>
-        <div class="message-container" id="message-board">
-            <!-- JavaScript will dynamically load messages here -->
-            <p class="message-placeholder">Happy Birthday to you dear 🌟 Today, I just want you to know how deeply grateful I am for you—for your kindness, your laughter, and the way you make everyone around you feel special. You’re more than just a friend to me; you’re like family. From every shared memory to every late-night conversation, you’ve been a constant source of joy, inspiration, and comfort in my life.
-
-Watching you grow, laugh, and thrive has been one of the greatest joys. You light up every room with your presence, and your heart is as beautiful as your spirit. I’m constantly amazed by your strength, your dreams, and the genuine care you show to everyone lucky enough to know you. You bring out the best in me, and I can’t thank you enough for being such a steadfast, genuine friend.
-
-Today, I wish for you all the happiness you bring to others to return to you a hundredfold. May this year bring you closer to all the dreams you hold dear, and may it be filled with endless joy, love, and laughter. You deserve the absolute best, and I’ll be here cheering for you every step of the way.
-
-Here’s to more memories, more laughter, and a friendship that I’ll treasure forever. Happy Birthday, Gloria—you truly are a gift to us all. 💖🎉
-
-            </p>
-        </div>
-        <div id = "message-container">
-            <textarea id="newMessage" placeholder="She's 18 already...🥹"></textarea>
-            <button class = "postmessage" onclick="addMessage()">👀She is?</button>
-        </div>
-    </section>
-
-    <!-- Chat Timeline Section -->
-    <section class="chat-timeline">
-        <h2>Memories</h2>
-        <div class="chat-content" id="chat-timeline">
-            <!-- Iconic chats will be loaded here -->
-            <p class="chat-placeholder">Let's take a trip together...</p>
-        </div>
+    <div class="container">
+        <div class="progress-bar"></div>
         
-        <audio id="backgroundMusic" autoplay loop>
-            <source src="10000reasons.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
+        <div class="story-wrapper">
+            <!-- Panels 1-7 remain the same -->
+            <div class="story-panel panel-1">
+                <div class="story-content">
+                    <div class="story-title">Welcome to Gloria's World</div>
+                    <div class="story-subtitle">A journey through memories & moments</div>
+                    <div class="photo-frame" style="background-image: url('imgs/glo.png')"></div>
+                    <div class="story-text">This is your story, Gloria. Every chapter more beautiful than the last. ✨</div>
+                </div>
+                <div class="interactive-element" style="top: 20%; right: 10%;" onclick="createHearts()"></div>
+            </div>
 
-    
-    
+            <div class="story-panel panel-2">
+                <div class="story-content">
+                    <div class="story-title">Captured Moments</div>
+                    <div class="story-subtitle">The early memories that started it all</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/glor.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria0.png')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria18.jpg')"></div>
+                    </div>
+                    <div class="story-text">From gentle smiles to playful salutes, each picture holds a story.</div>
+                </div>
+            </div>
 
-    <!-- Open When Letters Section -->
-    <section class="open-when-letters">
-        <h2>Open When...</h2>
-        <div class="letters">
-            <button class="b1" onclick="openLetter('happy')">Open When You're Happy</button>
-            <button class="b1" onclick="openLetter('sad')">Open When You're Sad</button>
-            <!-- More letters can be added here -->
+            <div class="story-panel panel-3">
+                <div class="story-content">
+                    <div class="story-title">Daily Adventures</div>
+                    <div class="story-subtitle">Finding the magic in the everyday</div>
+                    <div class="photo-grid">
+                        <video class="photo-frame" src="imgs/g1.mp4" controls playsinline autoplay loop muted></video>
+                        <video class="photo-frame" src="imgs/g2.mp4" controls playsinline autoplay loop muted></video>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria6.jpg')"></div>
+                        <video class="photo-frame" src="imgs/g12.mp4" controls playsinline autoplay loop muted></video>
+                    </div>
+                    <div class="story-text">Whether going to class or church, you do it with style.</div>
+                </div>
+            </div>
+
+            <div class="story-panel panel-4">
+                <div class="story-content">
+                    <div class="story-title">Growing & Glowing</div>
+                    <div class="story-subtitle">The journey of becoming</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria11.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria12.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria9.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria13.jpg')"></div>
+                    </div>
+                    <div class="story-text">Confidence looks gorgeous on you.</div>
+                </div>
+            </div>
+            
+            <div class="story-panel panel-5">
+                <div class="story-content">
+                    <div class="story-title">Her Unique Sparkle</div>
+                    <div class="story-subtitle">The quirky, funny, and unforgettable moments</div>
+                     <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/glori.png')"></div>
+                        <video class="photo-frame" src="imgs/g6.mp4" controls playsinline autoplay loop muted></video>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria15.jpg')"></div>
+                        <video class="photo-frame" src="imgs/g11.mp4" controls playsinline autoplay loop muted></video>
+                    </div>
+                    <div class="story-text">Never lose that wonderfully weird spark that makes you, you.</div>
+                </div>
+            </div>
+
+            <div class="story-panel panel-6">
+                <div class="story-content">
+                    <div class="story-title">Achievements & Wins</div>
+                    <div class="story-subtitle">Celebrating your hard work and talent</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria19.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria20.jpg')"></div>
+                        <video class="photo-frame" src="imgs/g4.mp4" controls playsinline autoplay loop muted></video>
+                        <video class="photo-frame" src="imgs/g3.mp4" controls playsinline autoplay loop muted></video>
+                    </div>
+                    <div class="story-text">From the lab, to the race track, to the basketball court... you're a champion.</div>
+                </div>
+            </div>
+
+            <div class="story-panel panel-7">
+                <div class="story-content">
+                    <div class="story-title">Friendship Goals</div>
+                    <div class="story-subtitle">The bonds that last forever</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria4.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria8.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria16.jpg')"></div>
+                        <video class="photo-frame" src="imgs/g8.mp4" controls playsinline autoplay loop muted></video>
+                    </div>
+                    <div class="story-text">Surrounded by good people, because you are one.</div>
+                </div>
+            </div>
+            
+            <!-- Panel 8: UPDATED -->
+            <div class="story-panel panel-8">
+                <div class="story-content">
+                    <div class="story-title">Our Story</div>
+                    <div class="story-subtitle">The moments we've shared</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria24.jpg')"></div>
+                        <video class="photo-frame" src="imgs/g5.mp4" controls playsinline autoplay loop muted></video>
+                        <video class="photo-frame" src="imgs/g13.mp4" controls playsinline autoplay loop muted></video>
+                    </div>
+                    <div class="story-text" id="_8">Every moment with you is my favorite.</div>
+                </div>
+                <!-- Pinned Note position updated -->
+                <div class="pinned-note" style="top: 1%; right: 3%;">
+                    <span class="pin-emoji">📌</span>
+                    <img src="imgs/imissu.jpg" alt="I miss you meme">
+                </div>
+            </div>
+
+            <!-- Panel 9: Dreams & Serenity -->
+            <div class="story-panel panel-9">
+                <div class="story-content">
+                    <div class="story-title">Dream Big</div>
+                    <div class="story-subtitle">The future is yours to create</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria5.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria23.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria22.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria17.jpg')"></div>
+                    </div>
+                    <div class="story-text">Dream, believe, achieve. Even when you're tired from studying!</div>
+                </div>
+            </div>
+
+            <!-- Panel 10: UPDATED -->
+            <div class="story-panel panel-10">
+                <div class="story-content">
+                    <div class="story-title">Grateful Heart</div>
+                    <div class="story-subtitle">For all the beautiful moments</div>
+                    <div class="photo-grid">
+                        <div class="photo-frame" style="background-image: url('imgs/gloria3.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria21.jpg')"></div>
+                        <div class="photo-frame" style="background-image: url('imgs/gloria25.jpg')"></div>
+                    </div>
+                    <div class="story-text" id="_10">In a world where you can be anything, you choose to be kind and amazing.</div>
+                </div>
+                <!-- Pinned Note position updated -->
+                <div class="pinned-note alt-rotate" style="top: 3%; left: 5%;">
+                    <span class="pin-emoji">📌</span>
+                    <img src="imgs/whattimedoyouwakeupgloria.jpg" alt="Duolingo meme about waking up">
+                </div>
+                <div class="interactive-element" style="bottom: 20%; right: 25%;" onclick="createHearts()"></div>
+            </div>
+
+            <!-- Panel 11: The End is Just the Beginning -->
+            <div class="story-panel panel-11">
+                <div class="story-content">
+                    <div class="story-title">To Be Continued...</div>
+                    <div class="story-subtitle">Your story is just getting started</div>
+                    <div class="photo-frame" style="background-image: url('imgs/glo.png')"></div>
+                    <div class="story-text">This isn't the end, Gloria. This is just the beginning of your next chapter. Keep shining! 🌟</div>
+                </div>
+                <div class="interactive-element" style="top: 40%; left: 50%; transform: translate(-50%, -50%);" onclick="createHearts()"></div>
+            </div>
         </div>
-    </section>
 
-    <!-- Music Playlist Section -->
-    <section class="playlist">
-        <h2>Playlist</h2>
-        <div id="playlist">
-            <!-- Button for "Listen to Your Favorite Songs" -->
-            <button class="b1" onclick="window.open('https://open.spotify.com/playlist/0PT9QV6mzXqsrMu9eT01Rh?si=CvAs8UJkRJSYWHX7mPaSew', '_blank')">
-                🎶 Listen to Your Favorite Songs 🎶
-            </button>
+        <div class="navigation">
+            <div class="nav-dot active" onclick="goToPanel(0)"></div>
+            <div class="nav-dot" onclick="goToPanel(1)"></div>
+            <div class="nav-dot" onclick="goToPanel(2)"></div>
+            <div class="nav-dot" onclick="goToPanel(3)"></div>
+            <div class="nav-dot" onclick="goToPanel(4)"></div>
+            <div class="nav-dot" onclick="goToPanel(5)"></div>
+            <div class="nav-dot" onclick="goToPanel(6)"></div>
+            <div class="nav-dot" onclick="goToPanel(7)"></div>
+            <div class="nav-dot" onclick="goToPanel(8)"></div>
+            <div class="nav-dot" onclick="goToPanel(9)"></div>
+            <div class="nav-dot" onclick="goToPanel(10)"></div>
         </div>
-    </section>
+        <!-- Spotify Playlist Embed -->
+        <div style="position:fixed; bottom:90px; left:50%; transform:translateX(-50%); z-index:200; width:340px; max-width:90vw; box-shadow:0 4px 24px rgba(0,0,0,0.2); border-radius:16px; overflow:hidden;">
+            <iframe style="border-radius:12px;" src="https://open.spotify.com/embed/playlist/0PT9QV6mzXqsrMu9eT01Rh?utm_source=generator" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
 
-
-    <button id="backToTop" onclick="scrollToTop()">⬆️ Back to Top</button>
-
-
-    <!-- Footer Section -->
-    <footer>
-        <p>With love, from Comrade!💖</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
