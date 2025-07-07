@@ -300,7 +300,7 @@
         }
 
         .interactive-element:hover {
-            transform: scale(1.2);
+            transform: scale(1.4);
             background: rgba(255, 255, 255, 0.3);
         }
 
@@ -382,7 +382,7 @@
         }
 
         .pinned-note:hover {
-            transform: scale(1.15) rotate(0deg) !important;
+            transform: scale(1.95) rotate(0deg) !important;
             z-index: 6;
         }
 
@@ -400,7 +400,7 @@
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            opacity: 0.55; /* This creates the "faded out" look */
+            opacity: 0.85; /* This creates the "faded out" look */
             border: 3px solid white;
         }
 
@@ -425,5 +425,8 @@
             }
             #_8 {
                 margin-bottom: 100px;
+            }
+            #x, #y{
+                margin-left: 50%;
             }
         }
