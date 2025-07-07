@@ -429,4 +429,7 @@
             #x, #y{
                 margin-left: 50%;
             }
+            #xy{
+                left: 62.5% !important; 
+            }
         }
